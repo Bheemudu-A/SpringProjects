@@ -1,0 +1,41 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--Demo of Interface Injection-->
+	<!--<bean id="pp" class="com.src.demo.SpringSession.Programmer">
+		<property name="spInterface" ref="desktop"></property>
+	</bean>-->
+	
+	
+	<!--Demo of autowire based on byType-->
+
+	<!--removed id as by default it's loading through type Programmer-->
+		<bean class="com.src.demo.SpringSession.Programmer" autowire="byType">
+		
+		<!--property will be removed in autowire as we sorting already by type-->
+		
+		<!--desktop is lazy-init bean, but if we call it from non-lazy or eager methods, object is created for lazy-init beans-->
+	        <property name="spInterface" >
+	          
+	          <!--desktop bean is now available for only Programmer not for others-->
+	          <bean id="desktop" class="com.src.demo.SpringSession.Desktop" lazy-init="true"></bean>
+	        
+	        </property>
+	        
+	        
+	</bean>
+	
+	
+	<!--primary makes to laptop to pick 1st unless you pass property explecitly, above commentted explicitly passed ref-->
+	<bean id="laptop" class="com.src.demo.SpringSession.Laptop" primary="true">
+	</bean>
+	
+<!--commenting to check inner bean-->
+	<!--<bean id="desktop" class="com.src.demo.SpringSession.Desktop" lazy-init="true"></bean>-->
+	
+	
+</beans>

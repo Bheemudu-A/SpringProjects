@@ -1,0 +1,49 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--this is to create objects(bean) for Pojo class with id pojo-->
+	<bean id="pojo" class="com.src.demo.SpringSession.Pojo">
+	</bean>
+	
+	
+	<bean id="pp" class="com.src.demo.SpringSession.Pojo">
+	
+  
+	
+	<!--we can also pass through type by-type but this only works if arguments are differnt types if we pass another int then it won't work-->
+	
+<!--	<constructor-arg type="com.src.demo.SpringSession.SuperPojo" ref="superPojo"/>
+	<constructor-arg type="int" value="28"/>-->
+	
+	<!--we can also pass through indexes in order wise-->
+	
+<!--	<constructor-arg index="0" ref="superPojo"/>
+	    <constructor-arg index="1" value="28"/>-->
+	
+	<!--need to pass arguments for constructer in order-->
+	<!--by using @ConstructorProperties if arguments are not in order also, it will take care of it, below are in reverse order still it works-->
+	<constructor-arg name="age" value ="30"/>
+	<constructor-arg name="sp" ref="superPojo"/>
+	
+
+	
+	
+	<property name="sp" ref="superPojo"></property>
+	</bean>
+	
+	<bean id="superPojo"  class ="com.src.demo.SpringSession.SuperPojo">
+		<property name="age" value="22"></property>
+	</bean>
+	
+	
+<!--	for now iam commenting it  as scope is prototype-->
+	<bean id="newpojo" class="com.src.demo.SpringSession.Pojo" scope="prototype">
+	</bean>
+	
+	<bean id="newpojo1" class="com.src.demo.SpringSession.Pojo"  scope="prototype">
+	</bean>
+
+</beans>
